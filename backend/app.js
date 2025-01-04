@@ -14,10 +14,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MySQL connection
+// MySQL connection
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: process.env.DB_PASSWORD, // Store sensitive info in `.env`
+  password: "S@wmiya@123",
   database: "employee_db",
 });
 
