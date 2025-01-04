@@ -1,10 +1,14 @@
-const express = require("express");
-const mysql = require("mysql2");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-import 'dotenv/config'
+import express from "express";
+import mysql from "mysql2";
+import cors from "cors";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const app = express();
-const port=process.env.PORT||5000
+const port = process.env.PORT || 5000;
+
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
@@ -13,7 +17,7 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "S@wmiya@123",
+  password: process.env.DB_PASSWORD, // Store sensitive info in `.env`
   database: "employee_db",
 });
 
@@ -68,5 +72,6 @@ app.get("/getEmployees", (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log("Server running on http://localhost:5000");
+  console.log(`Server running on http://localhost:${port}`);
 });
+
